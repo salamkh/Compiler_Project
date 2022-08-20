@@ -1,0 +1,66 @@
+session_start
+page createAccountPage{
+header{
+page_id: 1 ;
+page_link :createAccountPage1 ;
+}
+body{
+form {
+in : field( text-type  , name, "salam" ) ;
+in : field( email-type , email , sajcfsxcj@gmail.com ) ;
+in : field( select, gender ,["male","female"],"male" );
+in : field( password-type, password ,*****) ;
+in : field( number-type , age , 67);
+in : field( phone_number-type , phone_number ,0986543);
+in : field( radio , job , true);
+in : field( file ,image , C:\Users\96399\Pictures\Screenshots\3.jpg );
+in : field( date ,birthdate, 1-1-2001);
+in : field( checkbox ,["mal" ,"female"] ,["mal" ,"female"]);
+in : field( button, submit ) ;
+}
+<mix
+print(session->name);
+print(session->email);
+print(session->gender);
+go showAccountPage;
+>
+link : link_name (OPEN) , href ("showAccountPage") ;
+}
+}
+
+controller createAccountcontroller controle createAccountPage{
+function post(){
+go showAccountPage;
+}
+}
+page showAccountPage{
+header{
+page_id: 2 ;
+page_link :showAccountPage2 ;
+}
+
+body{
+
+out : text (session->name);
+out : text (session->email);
+out : text (session->gender);
+out : img(5.png);
+out : audio(Over_the_Horizon.mp3);
+out : video(bandicam.mp4);
+out : button ( onclick , login());
+<mix
+loop([1,2,3] as s){
+if(s==2){
+print(s);
+}
+}
+>
+}
+}
+controller showAccountcontroller controle showAccountPage{
+
+function get(){
+var x=0;
+print(x);
+}
+}
